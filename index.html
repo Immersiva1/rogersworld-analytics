@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Roger's World Analytics SDK Docs</title>
+    <style>
+      body {
+        -webkit-font-smoothing: antialiased;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 1em 0;
+        font-size: 21px;
+      }
+
+      #docs .sub {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+        margin: 20px 0 35px 0;
+      }
+
+      #docs .sub > *:first-child {
+        margin-top: 0;
+      }
+
+      #docs .name {
+        font-weight: bold;
+      }
+
+      #docs .method {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>analytics</h1>
+    <main id="docs"></main>
+
+    <script type="module">
+      import { createTagManagerRecorder } from './src/index.ts';
+
+      const dataLayer = [];
+      const $docs = document.querySelector('#docs');
+      const analytics = createTagManagerRecorder(dataLayer);
+
+      const traverse = (
+        namespace,
+        stack = ['analytics'],
+        $container = $docs
+      ) => {
+        const level = stack.length;
+
+        Object.entries(namespace).forEach(([title, value]) => {
+          if (typeof value === 'function') {
+            const $context = document.createElement('div');
+            const contextKeys = value.requiredContext
+              .map((ctx) => `<em>${ctx}</em>`)
+              .concat(value.optionalContext);
+
+            const keysJoined = contextKeys.join(', ');
+
+            $context.innerHTML = `
+              <p class="name">${value.recordingName.join(' / ')}</p>
+              <p class="signature">
+                <span class="method">${stack.concat(title).join('.')}(${
+              keysJoined
+                ? `<span class="properties">{ ${keysJoined} }</span>`
+                : ''
+            })</span></p>
+            `;
+            $container.appendChild($context);
+          } else {
+            const $subcontainer = document.createElement('div');
+            const $header = document.createElement(`h${level + 2}`);
+            $subcontainer.classList.add('sub');
+            $header.innerText = title;
+            $subcontainer.appendChild($header);
+            $container.appendChild($subcontainer);
+            traverse(value, stack.concat(title), $subcontainer);
+          }
+        });
+      };
+
+      traverse(analytics);
+    </script>
+  </body>
+</html>

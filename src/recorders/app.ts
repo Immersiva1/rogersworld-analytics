@@ -78,6 +78,10 @@ export const createAppAnalyticsRecorder = (
           name: ['Room', 'Back to All Episodes'],
           requiredContext: ['roomId', 'episodeId', 'userId'],
         }),
+        exitToLobby: Event({
+          name: ['Room', 'Back to All Episodes'],
+          requiredContext: ['roomId', 'episodeId', 'userId'],
+        }),
         joined: Event({
           name: ['Room', 'Joined'],
           requiredContext: ['roomId', 'episodeId', 'deviceId', 'playerId'],

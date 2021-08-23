@@ -2,36 +2,23 @@ import { createTagManagerRecorder, Recorder } from '../src';
 
 const header = `# Roger's World Analytics Web SDK`;
 
-const styles = `<style>
-
-section {
-  padding: 15px;
-  margin: 15px;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,.2);
-}
-
-</style>`;
-
 const template = (analytics: Recorder) => {
-  return [header, extractDocsMd({ analytics }), styles].join('\n\n');
+  return [header, extractDocsMd({ analytics })].join('\n\n');
 };
 
 const extractDocsMd = (section: Recorder, path: string[] = []): string => {
   return Object.entries(section)
     .flatMap(([key, subsection]) => {
       const subpath = path.concat(key);
-      let headerMd = `__${key}__`;
 
       if (typeof subsection === 'function') {
         const contextKeysMd = subsection.requiredContext
-          .map((key) => `_${key}_`)
+          .map((ctxKey) => `_${ctxKey}_`)
           .concat(subsection.optionalContext);
 
         return [
           '<section>',
-          headerMd,
-          section.recordingName,
+          `__${[subsection.recordingName].flat().join(' / ')}__`,
           '<code>' +
             subpath.join('.') +
             (contextKeysMd.length > 0
@@ -43,7 +30,7 @@ const extractDocsMd = (section: Recorder, path: string[] = []): string => {
       } else {
         return [
           '<section>',
-          headerMd,
+          `${'#'.repeat(path.length + 2)} ${key}`,
           extractDocsMd(subsection, subpath),
           '</section>',
         ];

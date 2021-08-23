@@ -2,21 +2,19 @@
 
 <section>
 
-__analytics__
+## analytics
 
 <section>
 
-__app__
+### app
 
 <section>
 
-__pages__
+#### pages
 
 <section>
 
-__home__
-
-
+**Web App / Home**
 
 <code>analytics.app.pages.home()</code>
 
@@ -24,9 +22,7 @@ __home__
 
 <section>
 
-__auth__
-
-
+**Web App / Auth**
 
 <code>analytics.app.pages.auth()</code>
 
@@ -34,9 +30,7 @@ __auth__
 
 <section>
 
-__payment__
-
-
+**Web App / Payment**
 
 <code>analytics.app.pages.payment({ _userId_ })</code>
 
@@ -46,17 +40,15 @@ __payment__
 
 <section>
 
-__events__
+#### events
 
 <section>
 
-__auth__
+##### auth
 
 <section>
 
-__signedUp__
-
-
+**Web App / Auth / Signed Up**
 
 <code>analytics.app.events.auth.signedUp({ _userId_ })</code>
 
@@ -64,9 +56,7 @@ __signedUp__
 
 <section>
 
-__loggedIn__
-
-
+**Web App / Auth / Logged In**
 
 <code>analytics.app.events.auth.loggedIn({ _userId_ })</code>
 
@@ -74,9 +64,7 @@ __loggedIn__
 
 <section>
 
-__loggedOut__
-
-
+**Web App / Auth / Logged Out**
 
 <code>analytics.app.events.auth.loggedOut({ _userId_ })</code>
 
@@ -84,9 +72,7 @@ __loggedOut__
 
 <section>
 
-__canceled__
-
-
+**Web App / Auth / Canceled**
 
 <code>analytics.app.events.auth.canceled()</code>
 
@@ -94,9 +80,7 @@ __canceled__
 
 <section>
 
-__required__
-
-
+**Web App / Auth / Required**
 
 <code>analytics.app.events.auth.required({ _episodeId_ })</code>
 
@@ -106,13 +90,11 @@ __required__
 
 <section>
 
-__payment__
+##### payment
 
 <section>
 
-__required__
-
-
+**Web App / Payment / Required**
 
 <code>analytics.app.events.payment.required({ _userId_ })</code>
 
@@ -120,9 +102,7 @@ __required__
 
 <section>
 
-__completed__
-
-
+**Web App / Payment / Completed**
 
 <code>analytics.app.events.payment.completed({ _userId_ })</code>
 
@@ -132,13 +112,11 @@ __completed__
 
 <section>
 
-__episode__
+##### episode
 
 <section>
 
-__detailsViewed__
-
-
+**Web App / Episode / Details Viewed**
 
 <code>analytics.app.events.episode.detailsViewed({ _episodeId_, userId })</code>
 
@@ -148,13 +126,11 @@ __detailsViewed__
 
 <section>
 
-__room__
+##### room
 
 <section>
 
-__created__
-
-
+**Web App / Room / Created**
 
 <code>analytics.app.events.room.created({ _roomId_, _episodeId_, _userId_ })</code>
 
@@ -162,9 +138,7 @@ __created__
 
 <section>
 
-__exited__
-
-
+**Web App / Room / Exited**
 
 <code>analytics.app.events.room.exited({ _roomId_, _episodeId_, _userId_ })</code>
 
@@ -172,9 +146,7 @@ __exited__
 
 <section>
 
-__backToAllEpisodes__
-
-
+**Web App / Room / Back to All Episodes**
 
 <code>analytics.app.events.room.backToAllEpisodes({ _roomId_, _episodeId_, _userId_ })</code>
 
@@ -182,9 +154,7 @@ __backToAllEpisodes__
 
 <section>
 
-__exitToLobby__
-
-
+**Web App / Room / Back to All Episodes**
 
 <code>analytics.app.events.room.exitToLobby({ _roomId_, _episodeId_, _userId_ })</code>
 
@@ -192,9 +162,7 @@ __exitToLobby__
 
 <section>
 
-__joined__
-
-
+**Web App / Room / Joined**
 
 <code>analytics.app.events.room.joined({ _roomId_, _episodeId_, _deviceId_, _playerId_ })</code>
 
@@ -204,13 +172,11 @@ __joined__
 
 <section>
 
-__device__
+##### device
 
 <section>
 
-__connected__
-
-
+**Web App / Device / Connected**
 
 <code>analytics.app.events.device.connected({ _roomId_, _episodeId_, _deviceId_ })</code>
 
@@ -218,9 +184,7 @@ __connected__
 
 <section>
 
-__disconnected__
-
-
+**Web App / Device / Disconnected**
 
 <code>analytics.app.events.device.disconnected({ _roomId_, _episodeId_, _deviceId_ })</code>
 
@@ -230,13 +194,11 @@ __disconnected__
 
 <section>
 
-__scene__
+##### scene
 
 <section>
 
-__started__
-
-
+**Web App / Scene / Started**
 
 <code>analytics.app.events.scene.started({ _sceneId_, _roomId_, _episodeId_ })</code>
 
@@ -244,9 +206,7 @@ __started__
 
 <section>
 
-__completed__
-
-
+**Web App / Scene / Completed**
 
 <code>analytics.app.events.scene.completed({ _sceneId_, _roomId_, _episodeId_ })</code>
 
@@ -254,9 +214,7 @@ __completed__
 
 <section>
 
-__skipped__
-
-
+**Web App / Scene / Skipped**
 
 <code>analytics.app.events.scene.skipped({ _sceneId_, _roomId_, _episodeId_ })</code>
 
@@ -264,13 +222,11 @@ __skipped__
 
 <section>
 
-__video__
+###### video
 
 <section>
 
-__segmentStarted__
-
-
+**Web App / Scene / Video / Segment Started**
 
 <code>analytics.app.events.scene.video.segmentStarted({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -278,9 +234,7 @@ __segmentStarted__
 
 <section>
 
-__segmentCompleted__
-
-
+**Web App / Scene / Video / Segment Completed**
 
 <code>analytics.app.events.scene.video.segmentCompleted({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -288,9 +242,7 @@ __segmentCompleted__
 
 <section>
 
-__autoplayPrevented__
-
-
+**Web App / Scene / Video / Autoplay Prevented**
 
 <code>analytics.app.events.scene.video.autoplayPrevented({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -298,9 +250,7 @@ __autoplayPrevented__
 
 <section>
 
-__paused__
-
-
+**Web App / Scene / Video / Paused**
 
 <code>analytics.app.events.scene.video.paused({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -308,9 +258,7 @@ __paused__
 
 <section>
 
-__played__
-
-
+**Web App / Scene / Video / Played**
 
 <code>analytics.app.events.scene.video.played({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -318,9 +266,7 @@ __played__
 
 <section>
 
-__looped__
-
-
+**Web App / Scene / Video / Looped**
 
 <code>analytics.app.events.scene.video.looped({ _roomId_, _episodeId_, _sceneId_, _videoId_ })</code>
 
@@ -330,13 +276,11 @@ __looped__
 
 <section>
 
-__prompt__
+###### prompt
 
 <section>
 
-__answered__
-
-
+**Web App / Scene / Prompt / Answered**
 
 <code>analytics.app.events.scene.prompt.answered({ _roomId_, _episodeId_, _sceneId_, _answer_, _playerId_, _deviceId_ })</code>
 
@@ -346,13 +290,11 @@ __answered__
 
 <section>
 
-__multipleChoice__
+###### multipleChoice
 
 <section>
 
-__answered__
-
-
+**Web App / Scene / Multiple Choice / Answered**
 
 <code>analytics.app.events.scene.multipleChoice.answered({ _roomId_, _episodeId_, _sceneId_, _answer_, _playerId_, _deviceId_ })</code>
 
@@ -362,13 +304,11 @@ __answered__
 
 <section>
 
-__buttonPrompt__
+###### buttonPrompt
 
 <section>
 
-__pressed__
-
-
+**Web App / Scene / Button Prompt / Pressed**
 
 <code>analytics.app.events.scene.buttonPrompt.pressed({ _roomId_, _episodeId_, _sceneId_, _playerId_, _deviceId_ })</code>
 
@@ -378,13 +318,11 @@ __pressed__
 
 <section>
 
-__timer__
+###### timer
 
 <section>
 
-__started__
-
-
+**Web App / Scene / Timer / Started**
 
 <code>analytics.app.events.scene.timer.started({ _roomId_, _episodeId_, _sceneId_ })</code>
 
@@ -392,9 +330,7 @@ __started__
 
 <section>
 
-__ended__
-
-
+**Web App / Scene / Timer / Ended**
 
 <code>analytics.app.events.scene.timer.ended({ _roomId_, _episodeId_, _sceneId_ })</code>
 
@@ -409,14 +345,3 @@ __ended__
 </section>
 
 </section>
-
-<style>
-
-section {
-  padding: 15px;
-  margin: 15px;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,.2);
-}
-
-</style>

@@ -2,6 +2,7 @@ import createTagManagerProvider from './providers/tag-manager';
 import TagManagerProvider from './providers/tag-manager';
 import { createAppAnalyticsRecorder } from './recorders/app';
 
+export * from './recorder';
 export * from './recorders/app';
 
 export const createTagManagerRecorder = (dataLayer: any[]) => {

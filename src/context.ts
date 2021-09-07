@@ -9,11 +9,13 @@ export interface EventContext {
   playerId?: string;
   videoId?: string;
   answer?: string;
+  timestamp?: number;
+  duration?: number;
+  asGroup?: boolean;
+  sceneIndex?: number;
+  scenesRemaining?: number;
+  sceneProgress?: number;
 }
-
-export type EventContextSubset<TKeys> = TKeys extends keyof EventContext
-  ? { [key in TKeys]: NonNullable<EventContext[key]> }
-  : undefined;
 
 export const mergeContext = (
   stickyContext: EventContext,
@@ -30,11 +32,11 @@ export const mergeContext = (
       throw new Error('Required context missing: ' + key);
     }
 
-    mergedContext[key] = value;
+    (mergedContext[key] as any) = value;
   });
 
   optionalKeys.forEach((key) => {
-    mergedContext[key] = newContext[key] || stickyContext[key];
+    (mergedContext[key] as any) = newContext[key] || stickyContext[key];
   });
 
   return mergedContext;

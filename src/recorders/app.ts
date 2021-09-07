@@ -65,6 +65,17 @@ export const createAppAnalyticsRecorder = (
         }),
       },
 
+      device: {
+        connected: Event({
+          name: ['Device', 'Connected'],
+          requiredContext: ['roomId', 'episodeId', 'deviceId'],
+        }),
+        disconnected: Event({
+          name: ['Device', 'Disconnected'],
+          requiredContext: ['roomId', 'episodeId', 'deviceId'],
+        }),
+      },
+
       room: {
         created: Event({
           name: ['Room', 'Created'],
@@ -78,24 +89,17 @@ export const createAppAnalyticsRecorder = (
           name: ['Room', 'Back to All Episodes'],
           requiredContext: ['roomId', 'episodeId', 'userId'],
         }),
-        exitToLobby: Event({
-          name: ['Room', 'Back to All Episodes'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
-        }),
         joined: Event({
           name: ['Room', 'Joined'],
           requiredContext: ['roomId', 'episodeId', 'deviceId', 'playerId'],
         }),
-      },
-
-      device: {
-        connected: Event({
-          name: ['Device', 'Connected'],
-          requiredContext: ['roomId', 'episodeId', 'deviceId'],
+        episodeStarted: Event({
+          name: ['Room', 'Episode Started'],
+          requiredContext: ['roomId', 'episodeId', 'userId'],
         }),
-        disconnected: Event({
-          name: ['Device', 'Disconnected'],
-          requiredContext: ['roomId', 'episodeId', 'deviceId'],
+        episodeCompleted: Event({
+          name: ['Room', 'Episode Completed'],
+          requiredContext: ['roomId', 'episodeId', 'userId'],
         }),
       },
 
@@ -116,11 +120,23 @@ export const createAppAnalyticsRecorder = (
         video: {
           segmentStarted: Event({
             name: ['Scene', 'Video', 'Segment Started'],
-            requiredContext: ['roomId', 'episodeId', 'sceneId', 'videoId'],
+            requiredContext: [
+              'roomId',
+              'episodeId',
+              'sceneId',
+              'videoId',
+              'timestamp',
+            ],
           }),
           segmentCompleted: Event({
             name: ['Scene', 'Video', 'Segment Completed'],
-            requiredContext: ['roomId', 'episodeId', 'sceneId', 'videoId'],
+            requiredContext: [
+              'roomId',
+              'episodeId',
+              'sceneId',
+              'videoId',
+              'timestamp',
+            ],
           }),
           autoplayPrevented: Event({
             name: ['Scene', 'Video', 'Autoplay Prevented'],
@@ -128,11 +144,26 @@ export const createAppAnalyticsRecorder = (
           }),
           paused: Event({
             name: ['Scene', 'Video', 'Paused'],
-            requiredContext: ['roomId', 'episodeId', 'sceneId', 'videoId'],
+            requiredContext: [
+              'roomId',
+              'episodeId',
+              'sceneId',
+              'videoId',
+              'timestamp',
+            ],
           }),
-          played: Event({
-            name: ['Scene', 'Video', 'Played'],
-            requiredContext: ['roomId', 'episodeId', 'sceneId', 'videoId'],
+          resumed: Event({
+            name: ['Scene', 'Video', 'Resumed'],
+            requiredContext: [
+              'roomId',
+              'episodeId',
+              'sceneId',
+              'sceneIndex',
+              'scenesRemaining',
+              'sceneProgress',
+              'videoId',
+              'timestamp',
+            ],
           }),
           looped: Event({
             name: ['Scene', 'Video', 'Looped'],

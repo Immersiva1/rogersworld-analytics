@@ -1,5 +1,8 @@
+import { EventContext } from '../context';
 import { AnalyticsProvider } from '../provider';
 import { createRecorderHelpers, Recorder } from '../recorder';
+
+const userInfo: (keyof EventContext)[] = ['userId', 'userEmail', 'userName'];
 
 export const createAppAnalyticsRecorder = (
   provider: AnalyticsProvider
@@ -19,7 +22,7 @@ export const createAppAnalyticsRecorder = (
       }),
       payment: Page({
         name: 'Payment',
-        requiredContext: ['userId'],
+        requiredContext: userInfo,
       }),
     },
 
@@ -27,15 +30,15 @@ export const createAppAnalyticsRecorder = (
       auth: {
         signedUp: Event({
           name: ['Auth', 'Signed Up'],
-          requiredContext: ['userId'],
+          requiredContext: userInfo,
         }),
         loggedIn: Event({
           name: ['Auth', 'Logged In'],
-          requiredContext: ['userId'],
+          requiredContext: userInfo,
         }),
         loggedOut: Event({
           name: ['Auth', 'Logged Out'],
-          requiredContext: ['userId'],
+          requiredContext: userInfo,
         }),
         canceled: Event({
           name: ['Auth', 'Canceled'],
@@ -49,11 +52,11 @@ export const createAppAnalyticsRecorder = (
       payment: {
         required: Event({
           name: ['Payment', 'Required'],
-          requiredContext: ['userId'],
+          requiredContext: userInfo,
         }),
         completed: Event({
           name: ['Payment', 'Completed'],
-          requiredContext: ['userId'],
+          requiredContext: userInfo,
         }),
       },
 
@@ -61,7 +64,7 @@ export const createAppAnalyticsRecorder = (
         detailsViewed: Event({
           name: ['Episode', 'Details Viewed'],
           requiredContext: ['episodeId'],
-          optionalContext: ['userId'],
+          optionalContext: userInfo,
         }),
       },
 
@@ -79,15 +82,15 @@ export const createAppAnalyticsRecorder = (
       room: {
         created: Event({
           name: ['Room', 'Created'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
+          requiredContext: ['roomId', 'episodeId', ...userInfo],
         }),
         exited: Event({
           name: ['Room', 'Exited'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
+          requiredContext: ['roomId', 'episodeId', ...userInfo],
         }),
         backToAllEpisodes: Event({
           name: ['Room', 'Back to All Episodes'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
+          requiredContext: ['roomId', 'episodeId', ...userInfo],
         }),
         joined: Event({
           name: ['Room', 'Joined'],
@@ -95,11 +98,11 @@ export const createAppAnalyticsRecorder = (
         }),
         episodeStarted: Event({
           name: ['Room', 'Episode Started'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
+          requiredContext: ['roomId', 'episodeId', ...userInfo],
         }),
         episodeCompleted: Event({
           name: ['Room', 'Episode Completed'],
-          requiredContext: ['roomId', 'episodeId', 'userId'],
+          requiredContext: ['roomId', 'episodeId', ...userInfo],
         }),
       },
 

@@ -38,6 +38,13 @@ export const createRecorderHelpers = (options: {
   };
 };
 
+export const withComputedContext = (context: EventContext): EventContext => {
+  return {
+    ...context,
+    acValue: JSON.stringify(context),
+  };
+};
+
 export const createRecorderMethodFactory = (options: {
   prefix?: string | string[];
   track: (nameParts: string | string[], context?: EventContext) => any;
@@ -55,8 +62,7 @@ export const createRecorderMethodFactory = (options: {
 
     const method: RecorderMethod = Object.assign(
       (newContext = {}) => {
-        track(
-          prefixedName,
+        const context = withComputedContext(
           mergeContext(
             stickyContext,
             newContext,
@@ -64,6 +70,8 @@ export const createRecorderMethodFactory = (options: {
             optionalContext
           )
         );
+
+        track(prefixedName, context);
       },
       {
         recordingName: prefixedName,

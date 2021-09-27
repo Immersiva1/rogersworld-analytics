@@ -1,7 +1,10 @@
 export interface PageViewContext {}
 
 export interface EventContext {
+  acValue?: string;
   userId?: string;
+  userEmail?: string;
+  userName?: string;
   roomId?: string;
   deviceId?: string;
   episodeId?: string;

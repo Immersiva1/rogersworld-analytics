@@ -1,19 +1,23 @@
-import { createTagManagerRecorder, Recorder } from '../src';
+import { createSegmentRecorder } from '..';
 
 const header = `# Roger's World Analytics Web SDK`;
 
-const template = (analytics: Recorder) => {
+const template = (analytics: any) => {
   return [header, extractDocsMd({ analytics })].join('\n\n');
 };
 
-const extractDocsMd = (section: Recorder, path: string[] = []): string => {
+const extractDocsMd = (section: any, path = []): string => {
   return Object.entries(section)
-    .flatMap(([key, subsection]) => {
+    .flatMap(([key, subsection]: any) => {
       const subpath = path.concat(key);
 
       if (typeof subsection === 'function') {
+        if (!subsection.requiredContext) {
+          return '';
+        }
+
         const contextKeysMd = subsection.requiredContext
-          .map((ctxKey) => `_${ctxKey}_`)
+          .map((ctxKey: string) => `_${ctxKey}_`)
           .concat(subsection.optionalContext);
 
         return [
@@ -39,4 +43,4 @@ const extractDocsMd = (section: Recorder, path: string[] = []): string => {
     .join('\n\n');
 };
 
-console.log(template(createTagManagerRecorder([])));
+console.log(template(createSegmentRecorder({} as any)));

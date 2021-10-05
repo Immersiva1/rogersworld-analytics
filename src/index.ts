@@ -1,11 +1,6 @@
-import createTagManagerProvider from './providers/tag-manager';
-import TagManagerProvider from './providers/tag-manager';
-import SegmentProvider, { Segment } from './providers/segment';
 import { createAppAnalyticsRecorder } from './recorders/app';
-import createSegmentProvider from './providers/segment';
-
-export * from './recorder';
-export * from './recorders/app';
+import createTagManagerProvider from './providers/tag-manager';
+import createSegmentProvider, { Segment } from './providers/segment';
 
 export const createTagManagerRecorder = (dataLayer: any[]) => {
   const gtm = createTagManagerProvider(dataLayer);
@@ -21,4 +16,4 @@ export const createSegmentRecorder = (segment: Segment) => {
   };
 };
 
-export { TagManagerProvider, SegmentProvider };
+export { createTagManagerProvider, createSegmentProvider };

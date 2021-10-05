@@ -1,7 +1,6 @@
 export interface PageViewContext {}
 
 export interface EventContext {
-  acValue?: string;
   userId?: string;
   userEmail?: string;
   userName?: string;
@@ -10,6 +9,7 @@ export interface EventContext {
   episodeId?: string;
   sceneId?: string;
   playerId?: string;
+  playerAge?: number;
   videoId?: string;
   answer?: string;
   timestamp?: number;

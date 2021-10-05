@@ -121,8 +121,12 @@
       const recorder = createSegmentRecorder(window.analytics);
 
       $testButton.addEventListener('click', () => {
-        recorder.app.events.episode.detailsViewed({
+        recorder.app.events.room.created({
+          roomId: '__MOCK_ROOM_ID__',
           episodeId: '__MOCK_EPISODE_ID__',
+          userId: '__MOCK_USER_ID__',
+          userEmail: 'mockuser@rogersworld.tv',
+          userName: 'Mock User',
         });
       });
 
@@ -131,23 +135,31 @@
         stack = ['analytics'],
         $container = $docs
       ) => {
+        if (typeof namespace === 'function') {
+          return;
+        }
+
         const level = stack.length;
 
         Object.entries(namespace).forEach(([title, value]) => {
           if (typeof value === 'function') {
+            if ('requiredContext' in value === false) {
+              return;
+            }
+
             const $context = document.createElement('div');
             const contextKeys = value.requiredContext
               .map((ctx) => `<em>${ctx}</em>`)
               .concat(value.optionalContext);
 
-            const keysJoined = contextKeys.join(', ');
+            const keysJoined = contextKeys.join(',<br />&nbsp;&nbsp;');
 
             $context.innerHTML = `
               <p class="name">${value.recordingName.join(' / ')}</p>
               <p class="signature">
                 <span class="method">${stack.concat(title).join('.')}(${
               keysJoined
-                ? `<span class="properties">{ ${keysJoined} }</span>`
+                ? `<span class="properties">{<br />&nbsp;&nbsp;${keysJoined}<br />}</span>`
                 : ''
             })</span></p>
             `;

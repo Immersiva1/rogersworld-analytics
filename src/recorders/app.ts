@@ -4,15 +4,15 @@ import { createRecorderHelpers, Recorder } from '../recorder';
 
 const userInfo: (keyof EventContext)[] = ['userId', 'userEmail', 'userName'];
 
-export const createAppAnalyticsRecorder = (
-  provider: AnalyticsProvider
-): Recorder => {
-  const { Page, Event } = createRecorderHelpers({
+export const createAppAnalyticsRecorder = (provider: AnalyticsProvider) => {
+  const { Page, Event, saveContext } = createRecorderHelpers({
     provider,
     prefix: 'Web App',
   });
 
   return {
+    saveContext,
+
     pages: {
       home: Page({
         name: 'Home',
@@ -95,6 +95,7 @@ export const createAppAnalyticsRecorder = (
         joined: Event({
           name: ['Room', 'Joined'],
           requiredContext: ['roomId', 'episodeId', 'deviceId', 'playerId'],
+          optionalContext: ['playerAge'],
         }),
         episodeStarted: Event({
           name: ['Room', 'Episode Started'],
@@ -109,15 +110,15 @@ export const createAppAnalyticsRecorder = (
       scene: {
         started: Event({
           name: ['Scene', 'Started'],
-          requiredContext: ['sceneId', 'roomId', 'episodeId'],
+          requiredContext: ['sceneId', 'roomId', 'episodeId', ...userInfo],
         }),
         completed: Event({
           name: ['Scene', 'Completed'],
-          requiredContext: ['sceneId', 'roomId', 'episodeId'],
+          requiredContext: ['sceneId', 'roomId', 'episodeId', ...userInfo],
         }),
         skipped: Event({
           name: ['Scene', 'Skipped'],
-          requiredContext: ['sceneId', 'roomId', 'episodeId'],
+          requiredContext: ['sceneId', 'roomId', 'episodeId', ...userInfo],
         }),
 
         video: {
@@ -129,6 +130,7 @@ export const createAppAnalyticsRecorder = (
               'sceneId',
               'videoId',
               'timestamp',
+              ...userInfo,
             ],
           }),
           segmentCompleted: Event({
@@ -139,6 +141,7 @@ export const createAppAnalyticsRecorder = (
               'sceneId',
               'videoId',
               'timestamp',
+              ...userInfo,
             ],
           }),
           autoplayPrevented: Event({
@@ -184,6 +187,7 @@ export const createAppAnalyticsRecorder = (
               'answer',
               'playerId',
               'deviceId',
+              'asGroup',
             ],
           }),
         },
@@ -198,6 +202,7 @@ export const createAppAnalyticsRecorder = (
               'answer',
               'playerId',
               'deviceId',
+              'asGroup',
             ],
           }),
         },
@@ -211,6 +216,7 @@ export const createAppAnalyticsRecorder = (
               'sceneId',
               'playerId',
               'deviceId',
+              'asGroup',
             ],
           }),
         },

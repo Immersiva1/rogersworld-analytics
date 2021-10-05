@@ -5,17 +5,13 @@
   ],
   "main": "./dist/analytics.umd.js",
   "module": "./dist/analytics.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/analytics.es.js",
-      "require": "./dist/analytics.umd.js"
-    }
-  },
   "scripts": {
     "dev": "vite",
-    "build": "npm run docs && vite build --config vite-lib.config.js && mv dist dist-lib && vite build && mv dist-lib/* dist/ && rm -rf dist-lib",
-    "serve": "vite preview",
-    "docs": "ts-node scripts/docs.md > README.md"
+    "build": "npm run build:lib && npm run build:types && npm run build:docs",
+    "build:lib": "vite build --config vite-lib.config.js && mv dist dist-lib && vite build && mv dist-lib/* dist/ && rm -rf dist-lib",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist src/index.ts && cp dist/index.d.ts dist/analytics.umd.js.d.ts",
+    "build:docs": "ts-node src/scripts/docs.md.ts > README.md",
+    "serve": "vite preview"
   },
   "devDependencies": {
     "@types/node": "^16.7.1",

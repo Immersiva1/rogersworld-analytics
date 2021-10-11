@@ -29,7 +29,7 @@ export const mergeContext = (
   const mergedContext: EventContext = {};
 
   requiredKeys.forEach((key) => {
-    const value = newContext[key] || stickyContext[key];
+    const value = newContext[key] ?? stickyContext[key];
 
     if (value === undefined) {
       throw new Error('Required context missing: ' + key);
@@ -39,7 +39,7 @@ export const mergeContext = (
   });
 
   optionalKeys.forEach((key) => {
-    (mergedContext[key] as any) = newContext[key] || stickyContext[key];
+    (mergedContext[key] as any) = newContext[key] ?? stickyContext[key];
   });
 
   return mergedContext;

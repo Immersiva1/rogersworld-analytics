@@ -37,13 +37,17 @@ export const computeContext = (context: EventContext): SegmentContext => {
   };
 };
 
-export default function createSegmentProvider(
-  segment: Segment = (globalThis as any).analytics
-): AnalyticsProvider {
+const getSegment = () => {
+  return (globalThis as any).analytics;
+};
+
+export default function createSegmentProvider(): AnalyticsProvider {
   let didIdentifyUser = false;
 
   return {
     trackEvent: (eventType, context = {}) => {
+      const segment = getSegment();
+
       if (context.userId && !didIdentifyUser) {
         segment.identify(context.userId, {
           email: context.userEmail,
@@ -57,6 +61,7 @@ export default function createSegmentProvider(
     },
 
     trackPageView: (parts, context = {}) => {
+      const segment = getSegment();
       const partsArr = [parts].flat();
 
       segment.page(

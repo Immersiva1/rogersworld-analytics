@@ -1,5 +1,5 @@
 import createTagManagerProvider from './providers/tag-manager';
-import createSegmentProvider, { Segment } from './providers/segment';
+import createSegmentProvider from './providers/segment';
 export declare const createTagManagerRecorder: (dataLayer: any[]) => {
     app: {
         saveContext: (sticky: import("./context").EventContext) => import("./context").EventContext;
@@ -64,7 +64,7 @@ export declare const createTagManagerRecorder: (dataLayer: any[]) => {
         };
     };
 };
-export declare const createSegmentRecorder: (segment?: Segment) => {
+export declare const createSegmentRecorder: () => {
     app: {
         saveContext: (sticky: import("./context").EventContext) => import("./context").EventContext;
         pages: {

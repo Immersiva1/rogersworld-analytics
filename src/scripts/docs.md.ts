@@ -43,4 +43,5 @@ const extractDocsMd = (section: any, path = []): string => {
     .join('\n\n');
 };
 
-console.log(template(createSegmentRecorder({} as any)));
+(globalThis as any).analytics = {};
+console.log(template(createSegmentRecorder()));

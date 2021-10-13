@@ -10,7 +10,7 @@ export const createTagManagerRecorder = (dataLayer: any[]) => {
   };
 };
 
-export const createSegmentRecorder = (segment: Segment) => {
+export const createSegmentRecorder = (segment?: Segment) => {
   return {
     app: createAppAnalyticsRecorder(createSegmentProvider(segment)),
   };

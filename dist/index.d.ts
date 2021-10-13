@@ -64,7 +64,7 @@ export declare const createTagManagerRecorder: (dataLayer: any[]) => {
         };
     };
 };
-export declare const createSegmentRecorder: (segment: Segment) => {
+export declare const createSegmentRecorder: (segment?: Segment) => {
     app: {
         saveContext: (sticky: import("./context").EventContext) => import("./context").EventContext;
         pages: {

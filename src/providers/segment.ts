@@ -38,7 +38,7 @@ export const computeContext = (context: EventContext): SegmentContext => {
 };
 
 export default function createSegmentProvider(
-  segment: Segment
+  segment: Segment = (globalThis as any).analytics
 ): AnalyticsProvider {
   let didIdentifyUser = false;
 

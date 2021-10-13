@@ -12,5 +12,5 @@ export interface Segment extends Array<any> {
     track: (event: string, context: EventContext) => void;
 }
 export declare const computeContext: (context: EventContext) => SegmentContext;
-export default function createSegmentProvider(segment: Segment): AnalyticsProvider;
+export default function createSegmentProvider(segment?: Segment): AnalyticsProvider;
 export {};

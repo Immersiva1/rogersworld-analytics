@@ -1,4 +1,4 @@
-import { createSegmentRecorder } from '..';
+import { createSegmentRecorder } from '../index';
 
 const header = `# Roger's World Analytics Web SDK`;
 
